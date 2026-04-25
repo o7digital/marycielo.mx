@@ -1,0 +1,28 @@
+---
+interface Props {
+  headInner: string;
+  bodyInner: string;
+  bodyClass?: string;
+  htmlLang?: string;
+  htmlClass?: string;
+  htmlTranslate?: string;
+}
+
+const {
+  headInner,
+  bodyInner,
+  bodyClass = '',
+  htmlLang = 'es',
+  htmlClass = 'no-js no-svg',
+  htmlTranslate = 'no',
+} = Astro.props;
+---
+<!doctype html>
+<html translate={htmlTranslate} lang={htmlLang} class={htmlClass}>
+  <head>
+    <Fragment set:html={headInner} />
+  </head>
+  <body class={bodyClass}>
+    <Fragment set:html={bodyInner} />
+  </body>
+</html>

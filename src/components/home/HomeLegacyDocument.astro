@@ -1,0 +1,11 @@
+---
+import LegacyDocumentLayout from '../../layouts/LegacyDocumentLayout.astro';
+import headInner from '../../content/home/head.html?raw';
+import bodyInner from '../../content/home/body.html?raw';
+import bodyClass from '../../content/home/body-class.txt?raw';
+---
+<LegacyDocumentLayout
+  headInner={headInner}
+  bodyInner={bodyInner}
+  bodyClass={bodyClass.trim()}
+/>

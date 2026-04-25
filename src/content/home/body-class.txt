@@ -1,0 +1,1 @@
+home wp-singular page-template page page-id-1231 wp-custom-logo wp-embed-responsive wp-theme-patiotime wp-child-theme-patiotime-child elementor-default elementor-kit-8 elementor-page elementor-page-1231 page-template-template-wide-content page-template-template-wide-content-php pt-template-wide light-color site-layout-fullwidth pt-form-underline theme-patiotime

@@ -1,3 +1,6 @@
+---
+import PrivacyNoticeCard from '../../components/PrivacyNoticeCard.astro';
+---
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -11,23 +14,7 @@
     />
   </head>
   <body>
-    <main>
-      <a href="/">
-        <img src="/wp-content/uploads/2023/03/Logo-Mar-y-Cielo-2023-500x500-1.png" alt="Mar y Cielo" />
-      </a>
-      <h1>Privacy Notice</h1>
-      <p>
-        This local clone includes the home page and the menu/contact sections recovered from the live site.
-      </p>
-      <p>
-        The original privacy notice could not be archived because `marycielo.mx` was returning a WordPress critical
-        error on that route during the clone.
-      </p>
-      <div class="actions">
-        <a class="button primary" href="/">Back to Home</a>
-        <a class="button secondary" href="/#colophon">Contact Details</a>
-      </div>
-    </main>
+    <PrivacyNoticeCard />
   </body>
 </html>
 
@@ -56,7 +43,7 @@
     padding: 24px;
   }
 
-  main {
+  :global(main) {
     width: min(680px, 100%);
     background: var(--card);
     border-radius: 24px;
@@ -65,13 +52,13 @@
     backdrop-filter: blur(10px);
   }
 
-  img {
+  :global(img) {
     display: block;
     width: 120px;
     margin: 0 auto 20px;
   }
 
-  h1 {
+  :global(h1) {
     margin: 0 0 12px;
     font-family: 'Cinzel', serif;
     color: var(--secondary);
@@ -79,14 +66,14 @@
     text-align: center;
   }
 
-  p {
+  :global(p) {
     margin: 0 0 14px;
     font-size: 1.05rem;
     line-height: 1.7;
     text-align: center;
   }
 
-  .actions {
+  :global(.actions) {
     display: flex;
     gap: 14px;
     justify-content: center;
@@ -94,7 +81,7 @@
     margin-top: 28px;
   }
 
-  a.button {
+  :global(a.button) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -106,17 +93,17 @@
     transition: transform 0.2s ease, opacity 0.2s ease;
   }
 
-  a.button:hover {
+  :global(a.button:hover) {
     transform: translateY(-1px);
     opacity: 0.95;
   }
 
-  a.button.primary {
+  :global(a.button.primary) {
     background: var(--primary);
     color: #fff;
   }
 
-  a.button.secondary {
+  :global(a.button.secondary) {
     background: transparent;
     color: var(--secondary);
     border: 1px solid rgb(3 58 88 / 20%);
