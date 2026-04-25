@@ -1,0 +1,35 @@
+# Migration Astro - marycielo.mx
+
+## Etat actuel
+- Branche de travail: `dev`
+- Astro est en place (`astro.config.mjs`, scripts npm, build OK)
+- Assets WordPress déplacés dans `public/` pour conserver le design
+- Routes existantes migrées:
+  - `/`
+  - `/es/`
+  - `/es/contact/`
+  - `/es/a-la-carte-menu/`
+  - `/es/privacy-notice/`
+- Home encore en mode legacy injecté (pour éviter les régressions visuelles)
+
+## Ce qu'il reste a faire
+1. Convertir la home en composants Astro natifs (header, hero, menus, footer)
+2. Remplacer le `<head>` legacy par un head Astro propre et maintenable
+3. Supprimer les scripts/styles WP non necessaires apres verification visuelle
+4. Confirmer les pages manquantes depuis l'admin WordPress et les ajouter
+5. Ajouter une couche SEO propre Astro (canonical, meta, sitemap)
+6. Valider desktop/mobile a chaque etape de migration
+
+## Workflow recommande
+1. Travailler uniquement sur `dev`
+2. Faire de petites PR/commits par section de la home
+3. Lancer `npm run build` avant chaque push
+4. Verifier le rendu visuel en local (`npm run dev`)
+
+## Commandes utiles
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+```
