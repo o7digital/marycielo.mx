@@ -26,12 +26,23 @@ const menuItems = [
   },
 ];
 
+interface Props {
+  variant?: 'home' | 'menu' | 'contact';
+}
+
+const { variant = 'home' } = Astro.props;
+const showHero = variant === 'home';
+const showMenu = variant === 'home' || variant === 'menu';
+const showImageBreak = variant === 'home';
+const pageTitleId = `${variant}-page-title`;
+const menuHref = showMenu ? '#selected-menus' : '/#selected-menus';
+
 const mapUrl =
   'https://www.google.com.mx/maps/place/La+Casa+Que+Canta/@17.635327,-101.5520173,17z/data=!3m1!4b1!4m9!3m8!1s0x8434773fd15b8acf:0x3a5d08d68ce6d8a7!5m2!4m1!1i2!8m2!3d17.635327!4d-101.5498233!16s%2Fg%2F1tnms17p';
 ---
-<div class="site-shell">
+<div class:list={['site-shell', `page-${variant}`]}>
   <header class="site-header" aria-label="Primary navigation">
-    <a class="menu-link" href="#selected-menus">
+    <a class="menu-link" href={menuHref}>
       <span class="hamburger" aria-hidden="true"></span>
       <span>Menu</span>
     </a>
@@ -44,42 +55,86 @@ const mapUrl =
   </header>
 
   <main>
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-media" aria-hidden="true">
-        <span class="hero-slide slide-one"></span>
-        <span class="hero-slide slide-two"></span>
-        <span class="hero-slide slide-three"></span>
-      </div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <p id="hero-title">Our sea food fresh daily from Zihuatanejo's coast</p>
-        <h1>Traditional Mexican recipes | Mediterranean dishes</h1>
-      </div>
-    </section>
+    {
+      showHero && (
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-media" aria-hidden="true">
+            <span class="hero-slide slide-one" />
+            <span class="hero-slide slide-two" />
+            <span class="hero-slide slide-three" />
+            <span class="hero-slide slide-four" />
+            <span class="hero-slide slide-five" />
+          </div>
+          <div class="hero-overlay" />
+          <div class="hero-content">
+            <p id="hero-title">Our sea food fresh daily from Zihuatanejo's coast</p>
+            <h1>Traditional Mexican recipes | Mediterranean dishes</h1>
+          </div>
+        </section>
+      )
+    }
 
-    <section id="selected-menus" class="selected-menu" aria-labelledby="menu-title">
-      <div class="menu-panel">
-        <p class="eyebrow">Recommendations</p>
-        <h2 id="menu-title">Selected Menus</h2>
-        <div class="menu-list">
-          {
-            menuItems.map((item) => (
-              <article class="menu-item">
-                <div class="menu-row">
-                  <h3>{item.name}</h3>
-                  <span class="menu-line" aria-hidden="true"></span>
-                  <span class="price">{item.usd}</span>
-                  <span class="price">{item.mxn}</span>
-                </div>
-                <p>{item.detail}</p>
-              </article>
-            ))
-          }
+    {
+      !showHero && (
+        <section class="page-hero" aria-labelledby={pageTitleId}>
+          <div>
+            <p class="eyebrow">Mar y Cielo</p>
+            <h1 id={pageTitleId}>{variant === 'menu' ? 'Selected Menus' : 'Contact us'}</h1>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      showMenu && (
+        <section id="selected-menus" class="selected-menu" aria-labelledby="menu-title">
+          <div class="menu-panel">
+            <p class="eyebrow">Recommendations</p>
+            <h2 id="menu-title">Selected Menus</h2>
+            <div class="menu-list">
+              {menuItems.map((item) => (
+                <article class="menu-item">
+                  <div class="menu-row">
+                    <h3>{item.name}</h3>
+                    <span class="menu-line" aria-hidden="true" />
+                    <span class="price">{item.usd}</span>
+                    <span class="price">{item.mxn}</span>
+                  </div>
+                  <p>{item.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      showImageBreak && <section class="image-break" aria-label="Restaurant view" />
+    }
+
+    {
+      variant === 'contact' && (
+        <section class="contact-panel" aria-labelledby="contact-location-title">
+          <div>
+            <p class="eyebrow">Location</p>
+            <h2 id="contact-location-title">La Ropa Beach, Zihuatanejo</h2>
+            <p>Camino Escenico Playa La Ropa S / N, La Ropa Beach, 40880 Zihuatanejo, Guerrero, Mexico</p>
+            <a class="underline-link dark" href={mapUrl} target="_blank" rel="noopener">View On Map</a>
+          </div>
+          <div>
+            <p class="eyebrow">Reservations</p>
+            <h2>Dinner from 18:00pm to 22:30pm</h2>
+            <a class="outline-button dark" href="mailto:sales.reservations@lacasaquecanta.com">Email Us</a>
+            <a class="outline-button dark" href="tel:+527555557000">Phone: + 52 755 555 7000</a>
+            <a class="solid-button dark" href="https://www.opentable.com/restref/client/?rid=1261543&restref=1261543&lang=en-US&domain=com" target="_blank" rel="noopener">
+              Make a reservation
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <section class="image-break" aria-label="Restaurant view"></section>
+        </section>
+      )
+    }
   </main>
 
   <footer id="colophon" class="site-footer">
@@ -105,8 +160,8 @@ const mapUrl =
 
       <section id="reservation" class="footer-block" aria-labelledby="contact-title">
         <h2 id="contact-title">Contact us</h2>
-        <a class="outline-button" href="mailto:concierge@lacasaquecanta.com">Email Us</a>
-        <a class="outline-button" href="tel:+527555557030">Phone: + 52 755 555 7030</a>
+        <a class="outline-button" href="mailto:sales.reservations@lacasaquecanta.com">Email Us</a>
+        <a class="outline-button" href="tel:+527555557000">Phone: + 52 755 555 7000</a>
         <a class="solid-button" href="https://www.opentable.com/restref/client/?rid=1261543&restref=1261543&lang=en-US&domain=com" target="_blank" rel="noopener">
           Make a reservation
         </a>
@@ -233,22 +288,32 @@ const mapUrl =
     opacity: 0;
     background-position: bottom center;
     background-size: cover;
-    animation: heroFade 18s infinite;
+    animation: heroFade 30s infinite;
     transform: scale(1.04);
   }
 
   .slide-one {
-    background-image: url('/wp-content/uploads/2023/03/marycielo_home_04.jpg');
+    background-image: url('/wp-content/uploads/2023/07/marycielo_lcqc_01.jpg');
   }
 
   .slide-two {
-    background-image: url('/wp-content/uploads/2023/03/marycielo_home_05.jpg');
+    background-image: url('/wp-content/uploads/2023/07/marycielo_3_home.jpg');
     animation-delay: 6s;
   }
 
   .slide-three {
-    background-image: url('/wp-content/uploads/2023/03/marycielo_home_08.jpg');
+    background-image: url('/wp-content/uploads/2023/07/marycielo_lcqc_02.jpg');
     animation-delay: 12s;
+  }
+
+  .slide-four {
+    background-image: url('/wp-content/uploads/2023/03/marycielo_home_04.jpg');
+    animation-delay: 18s;
+  }
+
+  .slide-five {
+    background-image: url('/wp-content/uploads/2023/03/marycielo_home_05.jpg');
+    animation-delay: 24s;
   }
 
   .hero-overlay {
@@ -269,7 +334,7 @@ const mapUrl =
   }
 
   .hero p {
-    font-size: clamp(2rem, 5.4vw, 3.8rem);
+    font-size: clamp(2rem, 5.25vw, 4.05rem);
     line-height: 1.2;
     text-transform: uppercase;
   }
@@ -288,6 +353,81 @@ const mapUrl =
     grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr);
     align-items: stretch;
     background: url('/wp-content/uploads/2023/03/marycielo_home_05.jpg') bottom center / cover no-repeat;
+  }
+
+  .page-hero {
+    min-height: 420px;
+    display: grid;
+    place-items: center;
+    padding: 128px 24px 72px;
+    text-align: center;
+    color: var(--white);
+    background:
+      linear-gradient(rgb(0 0 0 / 42%), rgb(0 0 0 / 48%)),
+      url('/wp-content/uploads/2023/07/marycielo_3_home.jpg') center / cover no-repeat;
+  }
+
+  .page-hero h1,
+  .contact-panel h2 {
+    margin: 10px 0 0;
+    font-family: var(--title-font);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+  }
+
+  .page-menu .selected-menu {
+    margin-top: 0;
+  }
+
+  .contact-panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(28px, 5vw, 70px);
+    padding: clamp(56px, 8vw, 110px) clamp(24px, 7vw, 90px);
+    background:
+      linear-gradient(rgb(255 255 255 / 94%), rgb(255 255 255 / 94%)),
+      url('/wp-content/uploads/2022/05/fondo_menu.jpg') center / cover no-repeat;
+  }
+
+  .contact-panel .eyebrow {
+    text-align: left;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+  }
+
+  .contact-panel h2 {
+    color: var(--blue);
+    font-size: clamp(1.55rem, 3vw, 2.4rem);
+    line-height: 1.2;
+  }
+
+  .contact-panel p:not(.eyebrow) {
+    max-width: 540px;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .underline-link.dark {
+    color: var(--blue);
+  }
+
+  .outline-button.dark,
+  .solid-button.dark {
+    max-width: 380px;
+  }
+
+  .outline-button.dark {
+    color: var(--blue);
+    border-color: rgb(3 58 88 / 30%);
+  }
+
+  .solid-button.dark {
+    color: var(--white);
+    background: var(--blue);
   }
 
   .menu-panel {
@@ -461,10 +601,10 @@ const mapUrl =
       transform: scale(1.04);
     }
     8%,
-    33% {
+    20% {
       opacity: 1;
     }
-    45%,
+    28%,
     100% {
       opacity: 0;
       transform: scale(1.11);
@@ -511,6 +651,11 @@ const mapUrl =
 
     .hero {
       min-height: 574px;
+    }
+
+    .page-hero {
+      min-height: 330px;
+      padding-top: 112px;
     }
 
     .hero-content {
@@ -564,6 +709,10 @@ const mapUrl =
     .footer-inner {
       grid-template-columns: 1fr;
       padding-top: 90px;
+    }
+
+    .contact-panel {
+      grid-template-columns: 1fr;
     }
 
     .footer-bottom {
