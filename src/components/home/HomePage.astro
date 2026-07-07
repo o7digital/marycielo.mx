@@ -35,17 +35,16 @@ const showHero = variant === 'home';
 const showMenu = variant === 'home' || variant === 'menu';
 const showImageBreak = variant === 'home';
 const pageTitleId = `${variant}-page-title`;
-const menuHref = showMenu ? '#selected-menus' : '/#selected-menus';
 
 const mapUrl =
   'https://www.google.com.mx/maps/place/La+Casa+Que+Canta/@17.635327,-101.5520173,17z/data=!3m1!4b1!4m9!3m8!1s0x8434773fd15b8acf:0x3a5d08d68ce6d8a7!5m2!4m1!1i2!8m2!3d17.635327!4d-101.5498233!16s%2Fg%2F1tnms17p';
 ---
 <div class:list={['site-shell', `page-${variant}`]}>
   <header class="site-header" aria-label="Primary navigation">
-    <a class="menu-link" href={menuHref}>
+    <button class="menu-link" type="button" data-menu-open aria-controls="site-menu" aria-expanded="false">
       <span class="hamburger" aria-hidden="true"></span>
       <span>Menu</span>
-    </a>
+    </button>
 
     <a class="brand" href="/" aria-label="Mar y Cielo home">
       <img src="/wp-content/uploads/2023/03/Logo-Mar-y-Cielo-2023-500x500-1-370x370.png" alt="Mar y Cielo" />
@@ -176,7 +175,52 @@ const mapUrl =
       <p>© Copyright Mar y Cielo. | Design by o7Digital <a href="/es/privacy-notice/">Privacy Notice</a></p>
     </div>
   </footer>
+
+  <div id="site-menu" class="menu-overlay" aria-hidden="true">
+    <button class="menu-close" type="button" data-menu-close aria-label="Close menu"></button>
+    <div class="menu-overlay-image" aria-hidden="true"></div>
+    <div class="menu-overlay-panel">
+      <a class="overlay-logo" href="/" aria-label="Mar y Cielo home">
+        <img src="/wp-content/uploads/2023/03/Logo-Mar-y-Cielo-2023-500x500-1.png" alt="Mar y Cielo" />
+      </a>
+      <nav class="overlay-nav" aria-label="Menu navigation">
+        <a href="/#selected-menus" data-menu-close>Menu</a>
+        <a href="/es/contact/" data-menu-close>Contact</a>
+      </nav>
+      <a class="overlay-reservation" href="#reservation" data-menu-close>Make a reservation</a>
+      <address class="overlay-contact">
+        <a href={mapUrl} target="_blank" rel="noopener"><span aria-hidden="true">●</span> Camino Escénico Playa La Ropa S / N, La Ropa Beach, 40880 Zihuatanejo, Guerrero, México</a>
+        <a href="mailto:concierge@lacasaquecanta.com"><span aria-hidden="true">□</span> concierge@lacasaquecanta.com</a>
+        <a href="tel:+52755557030"><span aria-hidden="true">◆</span> + 52 755 55 57030</a>
+        <a href="https://api.whatsapp.com/send?phone=5525641838"><span aria-hidden="true">◉</span> 55 2564 1838</a>
+      </address>
+      <nav class="overlay-social" aria-label="Social links">
+        <a href="https://www.facebook.com">f</a>
+        <a href="https://www.instagram.com">◎</a>
+      </nav>
+    </div>
+  </div>
 </div>
+
+<script>
+  const overlay = document.querySelector('[data-astro-cid-zqvhxwan] #site-menu') ?? document.getElementById('site-menu');
+  const openButton = document.querySelector('[data-menu-open]');
+  const closeButtons = document.querySelectorAll('[data-menu-close]');
+
+  function setMenu(open) {
+    if (!(overlay instanceof HTMLElement) || !(openButton instanceof HTMLElement)) return;
+    overlay.classList.toggle('is-open', open);
+    overlay.setAttribute('aria-hidden', open ? 'false' : 'true');
+    openButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.documentElement.classList.toggle('menu-is-open', open);
+  }
+
+  openButton?.addEventListener('click', () => setMenu(true));
+  closeButtons.forEach((button) => button.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setMenu(false);
+  });
+</script>
 
 <style>
   .site-shell {
@@ -224,6 +268,11 @@ const mapUrl =
     align-items: center;
     gap: 12px;
     width: fit-content;
+    color: inherit;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
   }
 
   .hamburger,
@@ -595,6 +644,158 @@ const mapUrl =
     margin-left: 12px;
   }
 
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: minmax(42%, 1fr) minmax(520px, 48%);
+    background: rgb(0 0 0 / 60%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s ease;
+  }
+
+  :global(.menu-is-open) {
+    overflow: hidden;
+  }
+
+  .menu-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .menu-overlay-image {
+    min-height: 100vh;
+    background: url('/wp-content/uploads/2023/03/marycielo_home_07.jpg') center right / cover no-repeat;
+    transform: translateX(-24px);
+    transition: transform 0.35s ease;
+  }
+
+  .menu-overlay.is-open .menu-overlay-image {
+    transform: translateX(0);
+  }
+
+  .menu-overlay-panel {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 96px clamp(30px, 5vw, 78px) 64px;
+    color: var(--blue);
+    background: #fff url('/wp-content/uploads/2022/05/fondo_menu.jpg') center / cover no-repeat;
+    transform: translateX(32px);
+    transition: transform 0.35s ease;
+  }
+
+  .menu-overlay.is-open .menu-overlay-panel {
+    transform: translateX(0);
+  }
+
+  .menu-close {
+    position: fixed;
+    top: 42px;
+    right: 42px;
+    z-index: 101;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .menu-close::before,
+  .menu-close::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 3px;
+    width: 28px;
+    height: 2px;
+    background: currentColor;
+  }
+
+  .menu-close::before {
+    transform: rotate(45deg);
+  }
+
+  .menu-close::after {
+    transform: rotate(-45deg);
+  }
+
+  .overlay-logo img {
+    width: 156px;
+    display: block;
+  }
+
+  .overlay-nav {
+    display: grid;
+    gap: 4px;
+    margin: 34px 0 26px;
+    text-align: center;
+  }
+
+  .overlay-nav a {
+    font-size: clamp(2.3rem, 4vw, 3.2rem);
+    font-weight: 600;
+    line-height: 1.08;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .overlay-reservation {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 286px;
+    min-height: 55px;
+    border: 2px solid var(--orange);
+    color: var(--orange);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .overlay-contact {
+    display: grid;
+    gap: 15px;
+    width: min(560px, 100%);
+    margin-top: 58px;
+    font-style: normal;
+    color: var(--ink);
+    font-size: 20px;
+    line-height: 1.45;
+  }
+
+  .overlay-contact a {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 14px;
+    align-items: start;
+    text-decoration: none;
+  }
+
+  .overlay-contact span {
+    color: var(--blue);
+    text-align: center;
+  }
+
+  .overlay-social {
+    display: flex;
+    gap: 26px;
+    margin-top: 28px;
+    color: var(--ink);
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  .overlay-social a {
+    text-decoration: none;
+  }
+
   @keyframes heroFade {
     0% {
       opacity: 0;
@@ -722,6 +923,34 @@ const mapUrl =
     .footer-bottom a {
       display: inline-block;
       margin: 8px 0 0;
+    }
+
+    .menu-overlay {
+      grid-template-columns: 1fr;
+      overflow-y: auto;
+    }
+
+    .menu-overlay-image {
+      display: none;
+    }
+
+    .menu-overlay-panel {
+      min-height: 100vh;
+      padding: 88px 28px 46px;
+    }
+
+    .menu-close {
+      top: 26px;
+      right: 24px;
+    }
+
+    .overlay-logo img {
+      width: 132px;
+    }
+
+    .overlay-contact {
+      margin-top: 40px;
+      font-size: 16px;
     }
   }
 </style>
