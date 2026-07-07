@@ -1,4 +1,7 @@
 ---
-import RedirectPage from '../../layouts/RedirectPage.astro';
+import HomePage from '../../components/home/HomePage.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 ---
-<RedirectPage title="marycielo.mx" href="/" label="Open the local home page" />
+<SiteLayout title="Home - marycielo.mx" lang="es">
+  <HomePage />
+</SiteLayout>

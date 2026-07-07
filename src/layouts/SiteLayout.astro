@@ -1,0 +1,88 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+}
+
+const {
+  title = 'Mar y Cielo',
+  description = "Our sea food fresh daily from Zihuatanejo's coast.",
+  lang = 'en',
+} = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --blue: #033a58;
+    --blue-dark: #14314f;
+    --ink: #0a253e;
+    --muted: #5c6b73;
+    --orange: #dd5903;
+    --paper: #fffaf4;
+    --white: #fff;
+    --border: rgb(255 255 255 / 22%);
+    --body-font: 'Jost', Arial, sans-serif;
+    --title-font: 'Cinzel', Georgia, serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--body-font);
+    color: var(--ink);
+    background: var(--white);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+
+  .screen-reader-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
