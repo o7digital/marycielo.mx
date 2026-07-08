@@ -126,6 +126,10 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
 <div class:list={['site-shell', `page-${variant}`]}>
   <header class="site-header" aria-label="Primary navigation">
     <div class="header-left">
+      <button class="menu-link" type="button" data-menu-open aria-controls="site-menu" aria-expanded="false">
+        <span class="hamburger" aria-hidden="true"></span>
+        <span>{copy.menu}</span>
+      </button>
       <nav class="language-switch" aria-label="Language switcher">
         {lang === 'en' ? (
           <>
@@ -139,10 +143,6 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
           </>
         )}
       </nav>
-      <button class="menu-link" type="button" data-menu-open aria-controls="site-menu" aria-expanded="false">
-        <span class="hamburger" aria-hidden="true"></span>
-        <span>{copy.menu}</span>
-      </button>
     </div>
 
     <a class="brand" href="/" aria-label="Mar y Cielo home">
@@ -356,8 +356,9 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
   }
 
   .header-left {
-    display: grid;
-    gap: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
     justify-self: start;
   }
 
@@ -408,9 +409,10 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
   .menu-link {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     width: fit-content;
     color: inherit;
+    font-size: 16px;
     border: 0;
     padding: 0;
     background: transparent;
@@ -421,7 +423,7 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
   .hamburger::before,
   .hamburger::after {
     display: block;
-    width: 24px;
+    width: 29px;
     height: 1px;
     background: currentColor;
   }
@@ -982,8 +984,7 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
       justify-self: end;
       grid-column: 2;
       grid-row: 1;
-      gap: 8px;
-      justify-items: end;
+      gap: 16px;
     }
 
     .menu-link {
@@ -991,14 +992,11 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
     }
 
     .language-switch {
-      position: absolute;
-      top: 16px;
-      left: 24px;
+      position: static;
       font-size: 11px;
     }
 
-    .brand,
-    .menu-link {
+    .brand {
       margin-top: 20px;
     }
 
