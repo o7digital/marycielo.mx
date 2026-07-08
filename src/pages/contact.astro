@@ -1,0 +1,23 @@
+---
+import HomePage from '../components/home/HomePage.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Mar y Cielo',
+  url: 'https://www.marycielo.mx/contact/',
+};
+---
+<SiteLayout
+  title="Dinner at Playa La Ropa | Mar y Cielo Reservations"
+  description="Reserve lunch or dinner at Playa La Ropa with Mar y Cielo, an oceanfront dining experience with bay views at La Casa Que Canta in Zihuatanejo."
+  lang="en"
+  image="/wp-content/uploads/2023/07/marycielo_3_home.webp"
+  keywords="breakfast at La Casa Que Canta, lunch at La Casa Que Canta, dinner at La Casa Que Canta, oceanfront breakfast Zihuatanejo, oceanfront lunch Zihuatanejo, oceanfront dinner Zihuatanejo, romantic dinner in Zihuatanejo, restaurant with bay view Zihuatanejo, boutique hotel breakfast Zihuatanejo, lunch at Playa La Ropa, dinner at Playa La Ropa, romantic dining experience La Casa Que Canta"
+  alternateEn="/contact/"
+  alternateEs="/es/contact/"
+  structuredData={contactSchema}
+>
+  <HomePage variant="contact" lang="en" />
+</SiteLayout>

@@ -1,40 +1,152 @@
 ---
-const menuItems = [
-  {
-    name: 'White ceviche',
-    detail: 'Ceviche blanco',
-    usd: '$12 usd',
-    mxn: '$220 mxn',
-  },
-  {
-    name: 'Mango ceviche',
-    detail: 'Ceviche de mango',
-    usd: '$12 usd',
-    mxn: '$220 mxn',
-  },
-  {
-    name: 'Avocado stuffed with Pacific seafood',
-    detail: 'Aguacate relleno de mariscos del Pacífico',
-    usd: '$10 usd',
-    mxn: '$195 mxn',
-  },
-  {
-    name: 'Sashimi, tuna and sea bass and Pacific shrimp with soy sauce and ginger dressing',
-    detail: 'Sashimi, atún, róbalo y camarón del pacífico con aderezo de salsa de soya y jengibre',
-    usd: '$10 usd',
-    mxn: '$205 mxn',
-  },
-];
+const menuItemsByLang = {
+  en: [
+    {
+      name: 'White ceviche',
+      detail: 'Ceviche blanco',
+      usd: '$12 usd',
+      mxn: '$220 mxn',
+    },
+    {
+      name: 'Mango ceviche',
+      detail: 'Ceviche de mango',
+      usd: '$12 usd',
+      mxn: '$220 mxn',
+    },
+    {
+      name: 'Avocado stuffed with Pacific seafood',
+      detail: 'Aguacate relleno de mariscos del Pacífico',
+      usd: '$10 usd',
+      mxn: '$195 mxn',
+    },
+    {
+      name: 'Sashimi, tuna and sea bass and Pacific shrimp with soy sauce and ginger dressing',
+      detail: 'Sashimi, atún, róbalo y camarón del pacífico con aderezo de salsa de soya y jengibre',
+      usd: '$10 usd',
+      mxn: '$205 mxn',
+    },
+  ],
+  es: [
+    {
+      name: 'Ceviche blanco',
+      detail: 'White ceviche',
+      usd: '$12 usd',
+      mxn: '$220 mxn',
+    },
+    {
+      name: 'Ceviche de mango',
+      detail: 'Mango ceviche',
+      usd: '$12 usd',
+      mxn: '$220 mxn',
+    },
+    {
+      name: 'Aguacate relleno de mariscos del Pacífico',
+      detail: 'Avocado stuffed with Pacific seafood',
+      usd: '$10 usd',
+      mxn: '$195 mxn',
+    },
+    {
+      name: 'Sashimi de atún, róbalo y camarón del Pacífico con aderezo de soya y jengibre',
+      detail: 'Tuna, sea bass and Pacific shrimp sashimi',
+      usd: '$10 usd',
+      mxn: '$205 mxn',
+    },
+  ],
+};
 
 interface Props {
   variant?: 'home' | 'menu' | 'contact';
+  lang?: 'en' | 'es';
 }
 
-const { variant = 'home' } = Astro.props;
+const { variant = 'home', lang = 'en' } = Astro.props;
 const showHero = variant === 'home';
 const showMenu = variant === 'home' || variant === 'menu';
 const showImageBreak = variant === 'home';
 const pageTitleId = `${variant}-page-title`;
+const copy = {
+  en: {
+    menu: 'Menu',
+    findTable: 'Find a Table',
+    heroKicker: "Our sea food fresh daily from Zihuatanejo's coast",
+    heroTitle: 'Traditional Mexican recipes | Mediterranean dishes',
+    pageMenuTitle: 'Selected Menus',
+    pageContactTitle: 'Contact us',
+    recommendations: 'Recommendations',
+    selectedMenus: 'Selected Menus',
+    contactUs: 'Contact us',
+    location: 'Location',
+    viewMap: 'View On Map',
+    reservations: 'Reservations',
+    dinnerHours: 'Dinner from 18:00pm to 22:30pm',
+    emailUs: 'Email Us',
+    phone: 'Phone: + 52 755 555 7030',
+    makeReservation: 'Make a reservation',
+    footerCatch: 'We take pride on our daily catch of sea food',
+    openingHours: 'Opening Hours',
+    dinner: 'Dinner',
+    privacy: 'Privacy Notice',
+    restaurantView: 'Restaurant view',
+  },
+  es: {
+    menu: 'Menú',
+    findTable: 'Reservar',
+    heroKicker: 'Mariscos frescos todos los días de la costa de Zihuatanejo',
+    heroTitle: 'Recetas mexicanas tradicionales | Platillos mediterráneos',
+    pageMenuTitle: 'Menús seleccionados',
+    pageContactTitle: 'Contacto',
+    recommendations: 'Recomendaciones',
+    selectedMenus: 'Menús seleccionados',
+    contactUs: 'Contacto',
+    location: 'Ubicación',
+    viewMap: 'Ver mapa',
+    reservations: 'Reservaciones',
+    dinnerHours: 'Cena de 18:00 a 22:30',
+    emailUs: 'Enviar email',
+    phone: 'Teléfono: + 52 755 555 7030',
+    makeReservation: 'Reservar',
+    footerCatch: 'Nos enorgullece nuestra pesca fresca del día',
+    openingHours: 'Horario',
+    dinner: 'Cena',
+    privacy: 'Aviso de privacidad',
+    restaurantView: 'Vista del restaurante',
+  },
+}[lang];
+const menuItems = menuItemsByLang[lang];
+const footerKeywords = lang === 'es'
+  ? [
+      'restaurante de hotel boutique en Zihuatanejo',
+      'restaurante de lujo en Zihuatanejo',
+      'mariscos frescos del Pacífico en Zihuatanejo',
+      'restaurante de pescado fresco en Zihuatanejo',
+      'cocina mexicana contemporánea en Zihuatanejo',
+      'cocina mediterránea frente al mar',
+      'restaurante con vista a la bahía en Zihuatanejo',
+      'cena romántica en Zihuatanejo',
+      'comida frente al mar en Playa La Ropa',
+      'cena en Playa La Ropa',
+      'experiencia gastronómica La Casa Que Canta',
+      'Mar y Cielo La Casa Que Canta',
+    ]
+  : [
+      'boutique hotel restaurant Zihuatanejo',
+      'luxury hotel restaurant Zihuatanejo',
+      'fresh Pacific seafood Zihuatanejo',
+      'fresh fish restaurant Zihuatanejo',
+      'contemporary Mexican cuisine Zihuatanejo',
+      'Mediterranean cuisine by the sea',
+      'restaurant with bay view Zihuatanejo',
+      'romantic dinner in Zihuatanejo',
+      'oceanfront dining Playa La Ropa',
+      'dinner at Playa La Ropa',
+      'La Casa Que Canta dining experience',
+      'Mar y Cielo La Casa Que Canta',
+    ];
+const routeMap = {
+  home: { en: '/', es: '/es/' },
+  menu: { en: '/a-la-carte-menu/', es: '/es/a-la-carte-menu/' },
+  contact: { en: '/contact/', es: '/es/contact/' },
+};
 
 const mapUrl =
   'https://www.google.com.mx/maps/place/La+Casa+Que+Canta/@17.635327,-101.5520173,17z/data=!3m1!4b1!4m9!3m8!1s0x8434773fd15b8acf:0x3a5d08d68ce6d8a7!5m2!4m1!1i2!8m2!3d17.635327!4d-101.5498233!16s%2Fg%2F1tnms17p';
@@ -42,16 +154,31 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
 ---
 <div class:list={['site-shell', `page-${variant}`]}>
   <header class="site-header" aria-label="Primary navigation">
-    <button class="menu-link" type="button" data-menu-open aria-controls="site-menu" aria-expanded="false">
-      <span class="hamburger" aria-hidden="true"></span>
-      <span>Menu</span>
-    </button>
+    <div class="header-left">
+      <button class="menu-link" type="button" data-menu-open aria-controls="site-menu" aria-expanded="false">
+        <span class="hamburger" aria-hidden="true"></span>
+        <span>{copy.menu}</span>
+      </button>
+      <nav class="language-switch" aria-label="Language switcher">
+        {lang === 'en' ? (
+          <>
+            <a class="is-active" href={routeMap[variant].en} hreflang="en" aria-current="page">EN</a>
+            <a href={routeMap[variant].es} hreflang="es-MX">ES</a>
+          </>
+        ) : (
+          <>
+            <a class="is-active" href={routeMap[variant].es} hreflang="es-MX" aria-current="page">ES</a>
+            <a href={routeMap[variant].en} hreflang="en">EN</a>
+          </>
+        )}
+      </nav>
+    </div>
 
     <a class="brand" href="/" aria-label="Mar y Cielo home">
       <img src="/wp-content/uploads/2023/03/Logo-Mar-y-Cielo-2023-500x500-1-370x370.webp" alt="Mar y Cielo" />
     </a>
 
-    <a class="header-button" href={reservationUrl} target="_blank" rel="noopener">Find a Table</a>
+    <a class="header-button" href={reservationUrl} target="_blank" rel="noopener">{copy.findTable}</a>
   </header>
 
   <main>
@@ -67,8 +194,8 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
           </div>
           <div class="hero-overlay" />
           <div class="hero-content">
-            <p id="hero-title">Our sea food fresh daily from Zihuatanejo's coast</p>
-            <h1>Traditional Mexican recipes | Mediterranean dishes</h1>
+            <p id="hero-title">{copy.heroKicker}</p>
+            <h1>{copy.heroTitle}</h1>
           </div>
         </section>
       )
@@ -79,7 +206,7 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
         <section class="page-hero" aria-labelledby={pageTitleId}>
           <div>
             <p class="eyebrow">Mar y Cielo</p>
-            <h1 id={pageTitleId}>{variant === 'menu' ? 'Selected Menus' : 'Contact us'}</h1>
+            <h1 id={pageTitleId}>{variant === 'menu' ? copy.pageMenuTitle : copy.pageContactTitle}</h1>
           </div>
         </section>
       )
@@ -89,8 +216,8 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
       showMenu && (
         <section id="selected-menus" class="selected-menu" aria-labelledby="menu-title">
           <div class="menu-panel">
-            <p class="eyebrow">Recommendations</p>
-            <h2 id="menu-title">Selected Menus</h2>
+            <p class="eyebrow">{copy.recommendations}</p>
+            <h2 id="menu-title">{copy.selectedMenus}</h2>
             <div class="menu-list">
               {menuItems.map((item) => (
                 <article class="menu-item">
@@ -110,25 +237,25 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
     }
 
     {
-      showImageBreak && <section class="image-break" aria-label="Restaurant view" />
+      showImageBreak && <section class="image-break" aria-label={copy.restaurantView} />
     }
 
     {
       variant === 'contact' && (
         <section class="contact-panel" aria-labelledby="contact-location-title">
           <div>
-            <p class="eyebrow">Location</p>
+            <p class="eyebrow">{copy.location}</p>
             <h2 id="contact-location-title">La Ropa Beach, Zihuatanejo</h2>
             <p>Camino Escenico Playa La Ropa S / N, La Ropa Beach, 40880 Zihuatanejo, Guerrero, Mexico</p>
-            <a class="underline-link dark" href={mapUrl} target="_blank" rel="noopener">View On Map</a>
+            <a class="underline-link dark" href={mapUrl} target="_blank" rel="noopener">{copy.viewMap}</a>
           </div>
           <div>
-            <p class="eyebrow">Reservations</p>
-            <h2>Dinner from 18:00pm to 22:30pm</h2>
-            <a class="outline-button dark" href="mailto:sales.reservations@lacasaquecanta.com">Email Us</a>
-            <a class="outline-button dark" href="tel:+527555557030">Phone: + 52 755 555 7030</a>
+            <p class="eyebrow">{copy.reservations}</p>
+            <h2>{copy.dinnerHours}</h2>
+            <a class="outline-button dark" href="mailto:sales.reservations@lacasaquecanta.com">{copy.emailUs}</a>
+            <a class="outline-button dark" href="tel:+527555557030">{copy.phone}</a>
             <a class="solid-button dark" href={reservationUrl} target="_blank" rel="noopener">
-              Make a reservation
+              {copy.makeReservation}
             </a>
           </div>
         </section>
@@ -142,27 +269,27 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
         <a href="/">
           <img src="/wp-content/uploads/2023/03/Logo-Mar-y-Cielo-2023-500x500-1.webp" alt="Mar y Cielo" />
         </a>
-        <p>We take pride on our daily catch of sea food</p>
+        <p>{copy.footerCatch}</p>
       </div>
 
       <section class="footer-block" aria-labelledby="location-title">
-        <h2 id="location-title">Location</h2>
+        <h2 id="location-title">{copy.location}</h2>
         <p>Camino Escenico<br />Playa La Ropa S / N,<br />La Ropa Beach, 40880<br />Zihuatanejo, Guerrero, Mexico</p>
-        <a class="underline-link" href={mapUrl} target="_blank" rel="noopener">View On Map</a>
+        <a class="underline-link" href={mapUrl} target="_blank" rel="noopener">{copy.viewMap}</a>
       </section>
 
       <section class="footer-block" aria-labelledby="hours-title">
-        <h2 id="hours-title">Opening Hours</h2>
-        <p><strong>Dinner</strong><br />From 18:00pm to 22:30pm</p>
+        <h2 id="hours-title">{copy.openingHours}</h2>
+        <p><strong>{copy.dinner}</strong><br />{copy.dinnerHours.replace('Dinner from ', 'From ').replace('Cena de ', 'De ')}</p>
         <img class="seal" src="/wp-content/uploads/2022/04/698eb08458461ec7b162801c6e46fc53.webp" alt="" />
       </section>
 
       <section id="reservation" class="footer-block" aria-labelledby="contact-title">
-        <h2 id="contact-title">Contact us</h2>
-        <a class="outline-button" href="mailto:sales.reservations@lacasaquecanta.com">Email Us</a>
-        <a class="outline-button" href="tel:+527555557030">Phone: + 52 755 555 7030</a>
+        <h2 id="contact-title">{copy.contactUs}</h2>
+        <a class="outline-button" href="mailto:sales.reservations@lacasaquecanta.com">{copy.emailUs}</a>
+        <a class="outline-button" href="tel:+527555557030">{copy.phone}</a>
         <a class="solid-button" href={reservationUrl} target="_blank" rel="noopener">
-          Make a reservation
+          {copy.makeReservation}
         </a>
         <nav class="social-links" aria-label="Social links">
           <a href="https://www.facebook.com">Facebook</a>
@@ -172,7 +299,8 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
     </div>
 
     <div class="footer-bottom">
-      <p>© Copyright Mar y Cielo. | Design by o7Digital <a href="/es/privacy-notice/">Privacy Notice</a></p>
+      <p>© Copyright Mar y Cielo. | Design by o7Digital <a href={lang === 'es' ? '/es/privacy-notice/' : '/privacy-notice/'}>{copy.privacy}</a></p>
+      <p class="footer-keywords">{footerKeywords.join(' · ')}</p>
     </div>
   </footer>
 
@@ -184,10 +312,10 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
         <img src="/wp-content/uploads/2023/03/Logo-Mar-y-Cielo-2023-500x500-1.webp" alt="Mar y Cielo" />
       </a>
       <nav class="overlay-nav" aria-label="Menu navigation">
-        <a href="/es/a-la-carte-menu/" data-menu-close>Menu</a>
-        <a href="/es/contact/" data-menu-close>Contact</a>
+        <a href={routeMap.menu[lang]} data-menu-close>{copy.menu}</a>
+        <a href={routeMap.contact[lang]} data-menu-close>{copy.contactUs}</a>
       </nav>
-      <a class="overlay-reservation" href={reservationUrl} target="_blank" rel="noopener" data-menu-close>Make a reservation</a>
+      <a class="overlay-reservation" href={reservationUrl} target="_blank" rel="noopener" data-menu-close>{copy.makeReservation}</a>
       <address class="overlay-contact">
         <a href={mapUrl} target="_blank" rel="noopener"><span aria-hidden="true">●</span> Camino Escénico Playa La Ropa S / N, La Ropa Beach, 40880 Zihuatanejo, Guerrero, México</a>
         <a href="mailto:concierge@lacasaquecanta.com"><span aria-hidden="true">□</span> concierge@lacasaquecanta.com</a>
@@ -257,6 +385,45 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
     display: block;
   }
 
+  .header-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    justify-self: start;
+  }
+
+  .language-switch {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: fit-content;
+    color: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .language-switch a {
+    text-decoration: none;
+    opacity: 0.72;
+  }
+
+  .language-switch a.is-active {
+    opacity: 1;
+  }
+
+  .language-switch a.is-active::after {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-left: 7px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+  }
+
   .menu-link,
   .header-button,
   .outline-button,
@@ -272,9 +439,10 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
   .menu-link {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 17px;
     width: fit-content;
     color: inherit;
+    font-size: 19px;
     border: 0;
     padding: 0;
     background: transparent;
@@ -285,7 +453,7 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
   .hamburger::before,
   .hamburger::after {
     display: block;
-    width: 24px;
+    width: 35px;
     height: 1px;
     background: currentColor;
   }
@@ -650,6 +818,15 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
     margin-left: 12px;
   }
 
+  .footer-keywords {
+    max-width: 1400px;
+    margin: 14px auto 0 !important;
+    color: rgb(255 255 255 / 68%);
+    font-size: 14px;
+    line-height: 1.8;
+    text-align: center;
+  }
+
   .menu-overlay {
     position: fixed;
     inset: 0;
@@ -842,10 +1019,24 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
       grid-row: 1;
     }
 
-    .menu-link {
+    .header-left {
       justify-self: end;
       grid-column: 2;
       grid-row: 1;
+      gap: 16px;
+    }
+
+    .menu-link {
+      justify-self: end;
+    }
+
+    .language-switch {
+      position: static;
+      font-size: 14px;
+    }
+
+    .brand {
+      margin-top: 20px;
     }
 
     .header-button {

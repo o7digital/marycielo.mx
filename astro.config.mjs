@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://marycielo.mx',
+  site: 'https://www.marycielo.mx',
   trailingSlash: 'always',
 });

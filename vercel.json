@@ -7,7 +7,7 @@
     },
     {
       "source": "/privacy-notice",
-      "destination": "/es/privacy-notice/",
+      "destination": "/privacy-notice/",
       "permanent": true
     },
     {
@@ -17,12 +17,12 @@
     },
     {
       "source": "/menu",
-      "destination": "/es/a-la-carte-menu/",
+      "destination": "/a-la-carte-menu/",
       "permanent": true
     },
     {
       "source": "/contact",
-      "destination": "/es/contact/",
+      "destination": "/contact/",
       "permanent": true
     }
   ]
