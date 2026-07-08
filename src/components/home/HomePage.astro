@@ -127,9 +127,17 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
   <header class="site-header" aria-label="Primary navigation">
     <div class="header-left">
       <nav class="language-switch" aria-label="Language switcher">
-        <a class:list={[lang === 'en' && 'is-active']} href={routeMap[variant].en} hreflang="en">EN</a>
-        <span aria-hidden="true">/</span>
-        <a class:list={[lang === 'es' && 'is-active']} href={routeMap[variant].es} hreflang="es-MX">ES</a>
+        {lang === 'en' ? (
+          <>
+            <a class="is-active" href={routeMap[variant].en} hreflang="en" aria-current="page">EN</a>
+            <a href={routeMap[variant].es} hreflang="es-MX">ES</a>
+          </>
+        ) : (
+          <>
+            <a class="is-active" href={routeMap[variant].es} hreflang="es-MX" aria-current="page">ES</a>
+            <a href={routeMap[variant].en} hreflang="en">EN</a>
+          </>
+        )}
       </nav>
       <button class="menu-link" type="button" data-menu-open aria-controls="site-menu" aria-expanded="false">
         <span class="hamburger" aria-hidden="true"></span>
@@ -354,9 +362,10 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
   }
 
   .language-switch {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
     width: fit-content;
     color: inherit;
     font-size: 12px;
@@ -371,7 +380,17 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
 
   .language-switch a.is-active {
     opacity: 1;
+  }
+
+  .language-switch a.is-active::after {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-left: 7px;
+    border-right: 1px solid currentColor;
     border-bottom: 1px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
   }
 
   .menu-link,

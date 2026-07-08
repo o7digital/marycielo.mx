@@ -22,9 +22,17 @@ const privacyNav = {
         <a href={privacyNav.contact}>Contact</a>
       </nav>
       <nav class="privacy-language-switch" aria-label="Language switcher">
-        <a class:list={[lang === 'en' && 'is-active']} href="/privacy-notice/" hreflang="en">EN</a>
-        <span aria-hidden="true">/</span>
-        <a class:list={[lang === 'es' && 'is-active']} href="/es/privacy-notice/" hreflang="es-MX">ES</a>
+        {lang === 'en' ? (
+          <>
+            <a class="is-active" href="/privacy-notice/" hreflang="en" aria-current="page">EN</a>
+            <a href="/es/privacy-notice/" hreflang="es-MX">ES</a>
+          </>
+        ) : (
+          <>
+            <a class="is-active" href="/es/privacy-notice/" hreflang="es-MX" aria-current="page">ES</a>
+            <a href="/privacy-notice/" hreflang="en">EN</a>
+          </>
+        )}
       </nav>
       <a class="book-link" href="https://www.opentable.com/restref/client/?rid=1261543&restref=1261543&lang=en-US&domain=com" target="_blank" rel="noopener">
         Book Now
@@ -218,8 +226,9 @@ const privacyNav = {
     position: absolute;
     left: clamp(24px, 5vw, 72px);
     top: 68px;
-    display: inline-flex;
-    gap: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     color: #1b252a;
     font-size: 12px;
     font-weight: 700;
@@ -234,7 +243,17 @@ const privacyNav = {
 
   .privacy-language-switch a.is-active {
     opacity: 1;
+  }
+
+  .privacy-language-switch a.is-active::after {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-left: 7px;
+    border-right: 1px solid currentColor;
     border-bottom: 1px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
   }
 
   .header-nav a,
