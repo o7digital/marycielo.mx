@@ -38,6 +38,7 @@ const pageTitleId = `${variant}-page-title`;
 
 const mapUrl =
   'https://www.google.com.mx/maps/place/La+Casa+Que+Canta/@17.635327,-101.5520173,17z/data=!3m1!4b1!4m9!3m8!1s0x8434773fd15b8acf:0x3a5d08d68ce6d8a7!5m2!4m1!1i2!8m2!3d17.635327!4d-101.5498233!16s%2Fg%2F1tnms17p';
+const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&restref=1261543&lang=en-US&domain=com';
 ---
 <div class:list={['site-shell', `page-${variant}`]}>
   <header class="site-header" aria-label="Primary navigation">
@@ -50,7 +51,7 @@ const mapUrl =
       <img src="/wp-content/uploads/2023/03/Logo-Mar-y-Cielo-2023-500x500-1-370x370.png" alt="Mar y Cielo" />
     </a>
 
-    <a class="header-button" href="#reservation">Find a Table</a>
+    <a class="header-button" href={reservationUrl} target="_blank" rel="noopener">Find a Table</a>
   </header>
 
   <main>
@@ -126,11 +127,10 @@ const mapUrl =
             <h2>Dinner from 18:00pm to 22:30pm</h2>
             <a class="outline-button dark" href="mailto:sales.reservations@lacasaquecanta.com">Email Us</a>
             <a class="outline-button dark" href="tel:+527555557000">Phone: + 52 755 555 7000</a>
-            <a class="solid-button dark" href="https://www.opentable.com/restref/client/?rid=1261543&restref=1261543&lang=en-US&domain=com" target="_blank" rel="noopener">
+            <a class="solid-button dark" href={reservationUrl} target="_blank" rel="noopener">
               Make a reservation
             </a>
           </div>
-        </div>
         </section>
       )
     }
@@ -161,7 +161,7 @@ const mapUrl =
         <h2 id="contact-title">Contact us</h2>
         <a class="outline-button" href="mailto:sales.reservations@lacasaquecanta.com">Email Us</a>
         <a class="outline-button" href="tel:+527555557000">Phone: + 52 755 555 7000</a>
-        <a class="solid-button" href="https://www.opentable.com/restref/client/?rid=1261543&restref=1261543&lang=en-US&domain=com" target="_blank" rel="noopener">
+        <a class="solid-button" href={reservationUrl} target="_blank" rel="noopener">
           Make a reservation
         </a>
         <nav class="social-links" aria-label="Social links">
@@ -184,10 +184,10 @@ const mapUrl =
         <img src="/wp-content/uploads/2023/03/Logo-Mar-y-Cielo-2023-500x500-1.png" alt="Mar y Cielo" />
       </a>
       <nav class="overlay-nav" aria-label="Menu navigation">
-        <a href="/#selected-menus" data-menu-close>Menu</a>
+        <a href="/es/a-la-carte-menu/" data-menu-close>Menu</a>
         <a href="/es/contact/" data-menu-close>Contact</a>
       </nav>
-      <a class="overlay-reservation" href="#reservation" data-menu-close>Make a reservation</a>
+      <a class="overlay-reservation" href={reservationUrl} target="_blank" rel="noopener" data-menu-close>Make a reservation</a>
       <address class="overlay-contact">
         <a href={mapUrl} target="_blank" rel="noopener"><span aria-hidden="true">●</span> Camino Escénico Playa La Ropa S / N, La Ropa Beach, 40880 Zihuatanejo, Guerrero, México</a>
         <a href="mailto:concierge@lacasaquecanta.com"><span aria-hidden="true">□</span> concierge@lacasaquecanta.com</a>
@@ -206,6 +206,7 @@ const mapUrl =
   const overlay = document.querySelector('[data-astro-cid-zqvhxwan] #site-menu') ?? document.getElementById('site-menu');
   const openButton = document.querySelector('[data-menu-open]');
   const closeButtons = document.querySelectorAll('[data-menu-close]');
+  const pageContent = document.querySelectorAll('.site-header, main, .site-footer');
 
   function setMenu(open) {
     if (!(overlay instanceof HTMLElement) || !(openButton instanceof HTMLElement)) return;
@@ -213,6 +214,11 @@ const mapUrl =
     overlay.setAttribute('aria-hidden', open ? 'false' : 'true');
     openButton.setAttribute('aria-expanded', open ? 'true' : 'false');
     document.documentElement.classList.toggle('menu-is-open', open);
+    pageContent.forEach((element) => {
+      if (element instanceof HTMLElement) {
+        element.inert = open;
+      }
+    });
   }
 
   openButton?.addEventListener('click', () => setMenu(true));
