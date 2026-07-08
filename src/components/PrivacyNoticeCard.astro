@@ -311,6 +311,7 @@ const privacyNav = {
 
   .watermark-frame {
     position: relative;
+    flex: 0 0 auto;
     width: min(1590px, 151vw);
     height: min(1590px, 151vw);
   }
@@ -412,12 +413,17 @@ const privacyNav = {
     }
 
     .watermark-frame {
-      width: 159vw;
-      height: 159vw;
+      width: 238vw;
+      height: 238vw;
     }
 
     .watermark-frame img {
-      opacity: 0.35;
+      opacity: 0.56;
+      filter: grayscale(1) sepia(0.18) contrast(1.24);
+    }
+
+    .watermark-fade {
+      background: linear-gradient(to bottom, transparent 0 46%, rgb(242 238 231 / 34%) 74%, #f2eee7 100%);
     }
 
     .privacy-copy {
