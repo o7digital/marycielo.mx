@@ -1,0 +1,29 @@
+{
+  "redirects": [
+    {
+      "source": "/privacy",
+      "destination": "/es/privacy-notice/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-notice",
+      "destination": "/es/privacy-notice/",
+      "permanent": true
+    },
+    {
+      "source": "/es/privacy",
+      "destination": "/es/privacy-notice/",
+      "permanent": true
+    },
+    {
+      "source": "/menu",
+      "destination": "/es/a-la-carte-menu/",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/es/contact/",
+      "permanent": true
+    }
+  ]
+}

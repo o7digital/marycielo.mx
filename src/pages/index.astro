@@ -1,7 +1,47 @@
 ---
 import HomePage from '../components/home/HomePage.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
+
+const restaurantSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: 'Mar y Cielo',
+  url: 'https://marycielo.mx/',
+  image: 'https://marycielo.mx/wp-content/uploads/2023/07/marycielo_3_home.webp',
+  servesCuisine: ['Mexican', 'Mediterranean', 'Seafood'],
+  priceRange: '$$',
+  telephone: '+52 755 555 7030',
+  email: 'sales.reservations@lacasaquecanta.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Camino Escenico Playa La Ropa S / N, La Ropa Beach',
+    addressLocality: 'Zihuatanejo',
+    addressRegion: 'Guerrero',
+    postalCode: '40880',
+    addressCountry: 'MX',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 17.635327,
+    longitude: -101.5498233,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '18:00',
+      closes: '22:30',
+    },
+  ],
+};
 ---
-<SiteLayout title="Home - marycielo.mx">
+<SiteLayout
+  title="Mar y Cielo | Seafood Restaurant in Zihuatanejo"
+  description="Mar y Cielo serves fresh seafood from Zihuatanejo's coast with traditional Mexican recipes and Mediterranean dishes at La Ropa Beach."
+  lang="en"
+  alternateEn="/"
+  alternateEs="/es/"
+  structuredData={restaurantSchema}
+>
   <HomePage />
 </SiteLayout>

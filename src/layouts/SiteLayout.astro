@@ -3,13 +3,28 @@ interface Props {
   title?: string;
   description?: string;
   lang?: string;
+  image?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  alternateEn?: string;
+  alternateEs?: string;
 }
 
 const {
   title = 'Mar y Cielo',
   description = "Our sea food fresh daily from Zihuatanejo's coast.",
   lang = 'en',
+  image = '/wp-content/uploads/2023/07/marycielo_3_home.webp',
+  structuredData,
+  alternateEn,
+  alternateEs,
 } = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://marycielo.mx');
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+const absoluteImage = new URL(image, siteUrl).toString();
+const locale = lang === 'es' ? 'es_MX' : 'en_US';
+const enHref = alternateEn ? new URL(alternateEn, siteUrl).toString() : undefined;
+const esHref = alternateEs ? new URL(alternateEs, siteUrl).toString() : undefined;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -18,12 +33,36 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#033a58" />
+    <link rel="canonical" href={canonical} />
+    {enHref && <link rel="alternate" hreflang="en" href={enHref} />}
+    {esHref && <link rel="alternate" hreflang="es-MX" href={esHref} />}
+    {enHref && <link rel="alternate" hreflang="x-default" href={enHref} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:site_name" content="Mar y Cielo" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={absoluteImage} />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="1068" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteImage} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    {
+      structuredData && (
+        <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      )
+    }
   </head>
   <body>
     <slot />
