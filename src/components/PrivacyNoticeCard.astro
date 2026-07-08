@@ -54,6 +54,15 @@ const sections = [
 ---
 
 <main class="privacy-page">
+  <div class="privacy-watermarks" aria-hidden="true">
+    <span class="watermark watermark-one">LA CASA</span>
+    <span class="waterline waterline-one"></span>
+    <span class="watermark watermark-two">QUE CANTA</span>
+    <span class="waterline waterline-two"></span>
+    <span class="watermark watermark-three">LA CASA</span>
+    <span class="waterline waterline-three"></span>
+  </div>
+
   <section class="privacy-hero" aria-labelledby="privacy-title">
     <a class="water-logo" href="/" aria-label="Mar y Cielo home">
       <img src="/wp-content/uploads/2023/03/Logo-Mar-y-Cielo-2023-500x500-1.png" alt="Mar y Cielo" />
@@ -93,11 +102,88 @@ const sections = [
 
 <style>
   .privacy-page {
+    position: relative;
     min-height: 100vh;
+    overflow: hidden;
     color: var(--ink);
     background:
-      linear-gradient(rgb(255 255 255 / 88%), rgb(255 255 255 / 94%)),
+      linear-gradient(rgb(248 244 237 / 90%), rgb(248 244 237 / 95%)),
       url('/wp-content/uploads/2022/05/fondo_menu.jpg') center / cover fixed;
+  }
+
+  .privacy-page > section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .privacy-watermarks {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .watermark,
+  .waterline {
+    position: absolute;
+    display: block;
+    opacity: 0.055;
+    transform: rotate(-2deg);
+  }
+
+  .watermark {
+    color: #22372f;
+    font-family: var(--title-font);
+    font-size: clamp(5.8rem, 15vw, 16rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    white-space: nowrap;
+    animation: watermarkDrift 18s ease-in-out infinite alternate;
+  }
+
+  .watermark-one {
+    top: 21%;
+    left: 9%;
+  }
+
+  .watermark-two {
+    top: 45%;
+    left: 9%;
+    animation-delay: -5s;
+  }
+
+  .watermark-three {
+    top: 70%;
+    right: -20%;
+    animation-delay: -9s;
+  }
+
+  .waterline {
+    width: min(70vw, 1380px);
+    height: 34px;
+    border-bottom: 12px solid currentColor;
+    border-radius: 0 0 50% 50%;
+    color: #22372f;
+    animation: waterlineDrift 20s ease-in-out infinite alternate;
+  }
+
+  .waterline-one {
+    top: 33%;
+    left: 7%;
+  }
+
+  .waterline-two {
+    top: 58%;
+    right: 4%;
+    animation-delay: -7s;
+  }
+
+  .waterline-three {
+    top: 82%;
+    left: 12%;
+    animation-delay: -11s;
   }
 
   .privacy-hero {
@@ -261,6 +347,26 @@ const sections = [
     }
   }
 
+  @keyframes watermarkDrift {
+    from {
+      transform: translate3d(-18px, 0, 0) rotate(-2deg);
+    }
+
+    to {
+      transform: translate3d(26px, 10px, 0) rotate(-1deg);
+    }
+  }
+
+  @keyframes waterlineDrift {
+    from {
+      transform: translate3d(18px, 0, 0) rotate(-1deg);
+    }
+
+    to {
+      transform: translate3d(-22px, 8px, 0) rotate(1deg);
+    }
+  }
+
   @media (max-width: 720px) {
     .privacy-page {
       background-attachment: scroll;
@@ -268,6 +374,26 @@ const sections = [
 
     .privacy-content {
       width: min(100% - 32px, 980px);
+    }
+
+    .watermark {
+      font-size: clamp(4.2rem, 22vw, 7.8rem);
+      letter-spacing: 0.11em;
+      opacity: 0.045;
+    }
+
+    .watermark-one,
+    .watermark-two {
+      left: -6%;
+    }
+
+    .watermark-three {
+      right: -70%;
+    }
+
+    .waterline {
+      width: 120vw;
+      opacity: 0.045;
     }
 
     .notice-section {
