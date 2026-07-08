@@ -87,6 +87,15 @@ const copy = {
     dinner: 'Dinner',
     privacy: 'Privacy Notice',
     restaurantView: 'Restaurant view',
+    introKicker: 'La Casa Que Canta',
+    introTitle: 'Welcome to Mar y Cielo',
+    introParagraphs: [
+      'Mar y Cielo is the restaurant of La Casa Que Canta, a place where the Pacific breeze, coastal cuisine and the beauty of Zihuatanejo come together in an intimate, elegant and memorable experience.',
+      'Here, every dinner carries something special: the view over the bay, the evening light, the sound of the waves and a cuisine inspired by the fresh flavors of the coast, Mexican tradition and a Mediterranean touch.',
+      'More than a restaurant, Mar y Cielo is an invitation to experience La Casa Que Canta from the table: slowly, beautifully, and with the quiet magic that turns an evening into an unforgettable memory.',
+    ],
+    viewMenu: 'View menu',
+    reserveTable: 'Reserve a table',
   },
   es: {
     menu: 'Menú',
@@ -110,6 +119,15 @@ const copy = {
     dinner: 'Cena',
     privacy: 'Aviso de privacidad',
     restaurantView: 'Vista del restaurante',
+    introKicker: 'La Casa Que Canta',
+    introTitle: 'Bienvenido a Mar y Cielo',
+    introParagraphs: [
+      'Mar y Cielo es el restaurante de La Casa Que Canta, un lugar donde la brisa del Pacífico, la cocina del mar y la belleza de Zihuatanejo se encuentran en una experiencia íntima, elegante y memorable.',
+      'Aquí, cada cena tiene algo especial: la vista sobre la bahía, la luz del atardecer, el sonido de las olas y una cocina inspirada en los sabores frescos de la costa, la tradición mexicana y un toque mediterráneo.',
+      'Más que un restaurante, Mar y Cielo es una invitación a vivir La Casa Que Canta desde la mesa: con calma, con sabor y con esa magia discreta que transforma una noche en un recuerdo inolvidable.',
+    ],
+    viewMenu: 'Ver menú',
+    reserveTable: 'Reservar mesa',
   },
 }[lang];
 const menuItems = menuItemsByLang[lang];
@@ -196,6 +214,29 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
           <div class="hero-content">
             <p id="hero-title">{copy.heroKicker}</p>
             <h1>{copy.heroTitle}</h1>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      showHero && (
+        <section class="intro-section" aria-labelledby="intro-title">
+          <div class="intro-inner">
+            <div class="intro-copy">
+              <p class="eyebrow">{copy.introKicker}</p>
+              <h2 id="intro-title">{copy.introTitle}</h2>
+              <div class="intro-text">
+                {copy.introParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+              </div>
+              <div class="intro-actions">
+                <a class="solid-button dark" href={routeMap.menu[lang]}>{copy.viewMenu}</a>
+                <a class="outline-button dark" href={reservationUrl} target="_blank" rel="noopener">
+                  {copy.reserveTable}
+                </a>
+              </div>
+            </div>
+            <div class="intro-visual" aria-hidden="true"></div>
           </div>
         </section>
       )
@@ -569,9 +610,72 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
     text-transform: uppercase;
   }
 
+  .intro-section {
+    background:
+      linear-gradient(rgb(255 255 255 / 94%), rgb(255 255 255 / 94%)),
+      url('/wp-content/uploads/2022/05/fondo_menu.webp') center / cover no-repeat;
+  }
+
+  .intro-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+    gap: clamp(32px, 6vw, 86px);
+    align-items: center;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: clamp(64px, 9vw, 128px) clamp(24px, 7vw, 90px);
+  }
+
+  .intro-copy .eyebrow {
+    text-align: left;
+  }
+
+  .intro-copy h2 {
+    margin: 12px 0 28px;
+    color: var(--blue);
+    font-family: var(--title-font);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .intro-text {
+    display: grid;
+    gap: 18px;
+    max-width: 820px;
+  }
+
+  .intro-text p {
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(17px, 1.5vw, 20px);
+    line-height: 1.75;
+  }
+
+  .intro-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 34px;
+  }
+
+  .intro-actions .outline-button,
+  .intro-actions .solid-button {
+    width: auto;
+    min-width: 180px;
+    margin: 0;
+    padding-inline: 24px;
+  }
+
+  .intro-visual {
+    min-height: clamp(420px, 48vw, 640px);
+    background: url('/wp-content/uploads/2023/07/marycielo_lcqc_02.jpg') center / cover no-repeat;
+  }
+
   .selected-menu {
     min-height: 700px;
-    margin: 40px 0;
+    margin: 0 0 40px;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr);
     align-items: stretch;
@@ -996,6 +1100,14 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
   }
 
   @media (max-width: 1024px) {
+    .intro-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .intro-visual {
+      min-height: 420px;
+    }
+
     .selected-menu {
       grid-template-columns: minmax(20%, 1fr) minmax(440px, 70%);
     }
@@ -1068,6 +1180,40 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
       margin-top: 31px;
       font-size: 18px;
       line-height: 1.5;
+    }
+
+    .intro-inner {
+      padding: 56px 24px;
+    }
+
+    .intro-copy h2 {
+      font-size: 34px;
+      line-height: 1.16;
+    }
+
+    .intro-text {
+      gap: 16px;
+    }
+
+    .intro-text p {
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    .intro-actions {
+      display: grid;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .intro-actions .outline-button,
+    .intro-actions .solid-button {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .intro-visual {
+      min-height: 340px;
     }
 
     .selected-menu {
