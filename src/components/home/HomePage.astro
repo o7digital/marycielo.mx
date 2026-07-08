@@ -96,6 +96,7 @@ const copy = {
     ],
     viewMenu: 'View menu',
     reserveTable: 'Reserve a table',
+    backToTop: 'Back to top',
   },
   es: {
     menu: 'Menú',
@@ -128,6 +129,7 @@ const copy = {
     ],
     viewMenu: 'Ver menú',
     reserveTable: 'Reservar mesa',
+    backToTop: 'Volver arriba',
   },
 }[lang];
 const menuItems = menuItemsByLang[lang];
@@ -170,7 +172,7 @@ const mapUrl =
   'https://www.google.com.mx/maps/place/La+Casa+Que+Canta/@17.635327,-101.5520173,17z/data=!3m1!4b1!4m9!3m8!1s0x8434773fd15b8acf:0x3a5d08d68ce6d8a7!5m2!4m1!1i2!8m2!3d17.635327!4d-101.5498233!16s%2Fg%2F1tnms17p';
 const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&restref=1261543&lang=en-US&domain=com';
 ---
-<div class:list={['site-shell', `page-${variant}`]}>
+<div id="top" class:list={['site-shell', `page-${variant}`]}>
   <header class="site-header" aria-label="Primary navigation">
     <div class="header-left">
       <button class="menu-link" type="button" data-menu-open aria-controls="site-menu" aria-expanded="false">
@@ -340,7 +342,10 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
     </div>
 
     <div class="footer-bottom">
-      <p>© Copyright Mar y Cielo. | Design by o7Digital <a href={lang === 'es' ? '/es/privacy-notice/' : '/privacy-notice/'}>{copy.privacy}</a></p>
+      <div class="footer-meta">
+        <p>© Copyright Mar y Cielo. | Design by o7Digital <a href={lang === 'es' ? '/es/privacy-notice/' : '/privacy-notice/'}>{copy.privacy}</a></p>
+        <a class="back-to-top" href="#top" data-back-to-top>{copy.backToTop}</a>
+      </div>
       <p class="footer-keywords">{footerKeywords.join(' · ')}</p>
     </div>
   </footer>
@@ -375,6 +380,7 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
   const overlay = document.querySelector('[data-astro-cid-zqvhxwan] #site-menu') ?? document.getElementById('site-menu');
   const openButton = document.querySelector('[data-menu-open]');
   const closeButtons = document.querySelectorAll('[data-menu-close]');
+  const backToTop = document.querySelector('[data-back-to-top]');
   const pageContent = document.querySelectorAll('.site-header, main, .site-footer');
 
   function setMenu(open) {
@@ -392,6 +398,11 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
 
   openButton?.addEventListener('click', () => setMenu(true));
   closeButtons.forEach((button) => button.addEventListener('click', () => setMenu(false)));
+  backToTop?.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.replaceState(null, '', `${location.pathname}${location.search}`);
+  });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') setMenu(false);
   });
@@ -918,8 +929,41 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
     margin: 0;
   }
 
+  .footer-meta {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .footer-bottom a {
     margin-left: 12px;
+  }
+
+  .back-to-top {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0 !important;
+    padding: 0 14px;
+    border: 1px solid rgb(255 255 255 / 28%);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .back-to-top::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    margin-right: 10px;
+    border-top: 1px solid currentColor;
+    border-left: 1px solid currentColor;
+    transform: translateY(3px) rotate(45deg);
   }
 
   .footer-keywords {
@@ -1263,9 +1307,21 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
       text-align: center;
     }
 
+    .footer-meta {
+      display: grid;
+      gap: 16px;
+      justify-items: center;
+    }
+
     .footer-bottom a {
       display: inline-block;
       margin: 8px 0 0;
+    }
+
+    .back-to-top {
+      display: flex !important;
+      width: min(100%, 260px);
+      margin: 0 !important;
     }
 
     .menu-overlay {
