@@ -2,6 +2,14 @@
 const contactEmail = 'sales.reservations@lacasaquecanta.com';
 const contactPhone = '+52 (755) 555 7030';
 const contactPhoneHref = 'tel:+527555557030';
+interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+const privacyNav = {
+  en: { home: '/', menu: '/a-la-carte-menu/', contact: '/contact/' },
+  es: { home: '/es/', menu: '/es/a-la-carte-menu/', contact: '/es/contact/' },
+}[lang];
 ---
 
 <div id="privacy-header" class="privacy-header">
@@ -9,9 +17,14 @@ const contactPhoneHref = 'tel:+527555557030';
     <header class="header-inner">
       <a href="/" class="sr-only">Home</a>
       <nav class="header-nav" aria-label="Privacy page navigation">
-        <a href="/">Home</a>
-        <a href="/es/a-la-carte-menu/">Menu</a>
-        <a href="/es/contact/">Contact</a>
+        <a href={privacyNav.home}>Home</a>
+        <a href={privacyNav.menu}>Menu</a>
+        <a href={privacyNav.contact}>Contact</a>
+      </nav>
+      <nav class="privacy-language-switch" aria-label="Language switcher">
+        <a class:list={[lang === 'en' && 'is-active']} href="/privacy-notice/" hreflang="en">EN</a>
+        <span aria-hidden="true">/</span>
+        <a class:list={[lang === 'es' && 'is-active']} href="/es/privacy-notice/" hreflang="es-MX">ES</a>
       </nav>
       <a class="book-link" href="https://www.opentable.com/restref/client/?rid=1261543&restref=1261543&lang=en-US&domain=com" target="_blank" rel="noopener">
         Book Now
@@ -201,6 +214,29 @@ const contactPhoneHref = 'tel:+527555557030';
     text-transform: uppercase;
   }
 
+  .privacy-language-switch {
+    position: absolute;
+    left: clamp(24px, 5vw, 72px);
+    top: 68px;
+    display: inline-flex;
+    gap: 7px;
+    color: #1b252a;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .privacy-language-switch a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.65;
+  }
+
+  .privacy-language-switch a.is-active {
+    opacity: 1;
+    border-bottom: 1px solid currentColor;
+  }
+
   .header-nav a,
   .book-link {
     letter-spacing: 0;
@@ -338,6 +374,12 @@ const contactPhoneHref = 'tel:+527555557030';
     .header-nav {
       gap: 18px;
       font-size: 12px;
+    }
+
+    .privacy-language-switch {
+      top: 58px;
+      left: 22px;
+      font-size: 11px;
     }
 
     .book-link {

@@ -1,8 +1,11 @@
 const pages = [
   { path: '/', priority: '1.0' },
   { path: '/es/', priority: '0.9' },
+  { path: '/a-la-carte-menu/', priority: '0.8' },
   { path: '/es/a-la-carte-menu/', priority: '0.8' },
+  { path: '/contact/', priority: '0.8' },
   { path: '/es/contact/', priority: '0.8' },
+  { path: '/privacy-notice/', priority: '0.4' },
   { path: '/es/privacy-notice/', priority: '0.4' },
 ];
 
