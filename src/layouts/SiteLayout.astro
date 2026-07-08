@@ -21,7 +21,7 @@ const {
   alternateEs,
 } = Astro.props;
 
-const siteUrl = Astro.site ?? new URL('https://marycielo.mx');
+const siteUrl = Astro.site ?? new URL('https://www.marycielo.mx');
 const canonical = new URL(Astro.url.pathname, siteUrl).toString();
 const absoluteImage = new URL(image, siteUrl).toString();
 const locale = lang === 'es' ? 'es_MX' : 'en_US';

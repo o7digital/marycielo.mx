@@ -113,6 +113,35 @@ const copy = {
   },
 }[lang];
 const menuItems = menuItemsByLang[lang];
+const footerKeywords = lang === 'es'
+  ? [
+      'restaurante de hotel boutique en Zihuatanejo',
+      'restaurante de lujo en Zihuatanejo',
+      'mariscos frescos del Pacífico en Zihuatanejo',
+      'restaurante de pescado fresco en Zihuatanejo',
+      'cocina mexicana contemporánea en Zihuatanejo',
+      'cocina mediterránea frente al mar',
+      'restaurante con vista a la bahía en Zihuatanejo',
+      'cena romántica en Zihuatanejo',
+      'comida frente al mar en Playa La Ropa',
+      'cena en Playa La Ropa',
+      'experiencia gastronómica La Casa Que Canta',
+      'Mar y Cielo La Casa Que Canta',
+    ]
+  : [
+      'boutique hotel restaurant Zihuatanejo',
+      'luxury hotel restaurant Zihuatanejo',
+      'fresh Pacific seafood Zihuatanejo',
+      'fresh fish restaurant Zihuatanejo',
+      'contemporary Mexican cuisine Zihuatanejo',
+      'Mediterranean cuisine by the sea',
+      'restaurant with bay view Zihuatanejo',
+      'romantic dinner in Zihuatanejo',
+      'oceanfront dining Playa La Ropa',
+      'dinner at Playa La Ropa',
+      'La Casa Que Canta dining experience',
+      'Mar y Cielo La Casa Que Canta',
+    ];
 const routeMap = {
   home: { en: '/', es: '/es/' },
   menu: { en: '/a-la-carte-menu/', es: '/es/a-la-carte-menu/' },
@@ -271,6 +300,7 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
 
     <div class="footer-bottom">
       <p>© Copyright Mar y Cielo. | Design by o7Digital <a href={lang === 'es' ? '/es/privacy-notice/' : '/privacy-notice/'}>{copy.privacy}</a></p>
+      <p class="footer-keywords">{footerKeywords.join(' · ')}</p>
     </div>
   </footer>
 
@@ -786,6 +816,15 @@ const reservationUrl = 'https://www.opentable.com/restref/client/?rid=1261543&re
 
   .footer-bottom a {
     margin-left: 12px;
+  }
+
+  .footer-keywords {
+    max-width: 1400px;
+    margin: 14px auto 0 !important;
+    color: rgb(255 255 255 / 48%);
+    font-size: 11px;
+    line-height: 1.8;
+    text-align: center;
   }
 
   .menu-overlay {
