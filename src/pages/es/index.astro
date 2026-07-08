@@ -6,9 +6,12 @@ const restaurantSchema = {
   '@context': 'https://schema.org',
   '@type': 'Restaurant',
   name: 'Mar y Cielo',
+  alternateName: 'La Casa Que Canta restaurant',
   url: 'https://marycielo.mx/es/',
   image: 'https://marycielo.mx/wp-content/uploads/2023/07/marycielo_3_home.webp',
   servesCuisine: ['Mexican', 'Mediterranean', 'Seafood'],
+  keywords:
+    'La Casa Que Canta restaurant, Mar y Cielo La Casa Que Canta, La Casa Que Canta dining experience, boutique hotel restaurant Zihuatanejo, luxury hotel restaurant Zihuatanejo, seaside dining experience',
   priceRange: '$$',
   telephone: '+52 755 555 7030',
   email: 'sales.reservations@lacasaquecanta.com',
@@ -36,11 +39,12 @@ const restaurantSchema = {
 };
 ---
 <SiteLayout
-  title="Mar y Cielo | Restaurante de mariscos en Zihuatanejo"
-  description="Mar y Cielo ofrece mariscos frescos de la costa de Zihuatanejo, recetas mexicanas tradicionales y platillos mediterraneos en Playa La Ropa."
+  title="Mar y Cielo | La Casa Que Canta Restaurant Zihuatanejo"
+  description="Mar y Cielo at La Casa Que Canta offers a boutique hotel dining experience in Zihuatanejo with fresh Pacific seafood, Mexican recipes and Mediterranean dishes."
   lang="es"
   alternateEn="/"
   alternateEs="/es/"
+  keywords="La Casa Que Canta restaurant, Mar y Cielo La Casa Que Canta, La Casa Que Canta dining experience, boutique hotel restaurant Zihuatanejo, luxury hotel restaurant Zihuatanejo, seaside dining experience, boutique hotel dining experience, exclusive hotel restaurant Zihuatanejo, hotel guest dining experience"
   structuredData={restaurantSchema}
 >
   <HomePage />

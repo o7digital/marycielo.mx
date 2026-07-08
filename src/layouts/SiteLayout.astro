@@ -4,6 +4,7 @@ interface Props {
   description?: string;
   lang?: string;
   image?: string;
+  keywords?: string;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
   alternateEn?: string;
   alternateEs?: string;
@@ -14,6 +15,7 @@ const {
   description = "Our sea food fresh daily from Zihuatanejo's coast.",
   lang = 'en',
   image = '/wp-content/uploads/2023/07/marycielo_3_home.webp',
+  keywords,
   structuredData,
   alternateEn,
   alternateEs,
@@ -33,6 +35,7 @@ const esHref = alternateEs ? new URL(alternateEs, siteUrl).toString() : undefine
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#033a58" />
     <link rel="canonical" href={canonical} />
