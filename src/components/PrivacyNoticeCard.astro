@@ -10,6 +10,176 @@ const privacyNav = {
   en: { home: '/', menu: '/a-la-carte-menu/', contact: '/contact/' },
   es: { home: '/es/', menu: '/es/a-la-carte-menu/', contact: '/es/contact/' },
 }[lang];
+const copy = {
+  en: {
+    nav: { home: 'Home', menu: 'Menu', contact: 'Contact', book: 'Book Now' },
+    title: 'Privacy Notice',
+    intro:
+      'In "Mar y Cielo" (operated by CASACANTA ZIHUA S.A. de C.V.) we are aware of the importance of maintaining the confidentiality of personal and sensitive information of our guests and clients. We are committed to protecting your information and privacy in accordance with the Federal Law on Protection of Personal Data Held by Private Parties (Mexico), the General Data Protection Regulation (GDPR) of the European Union, and the California Consumer Privacy Act (CCPA) in the United States. Below, we provide important information regarding the collection and use of personal data.',
+    sections: [
+      {
+        title: '1. Data Collection',
+        paragraphs: [
+          'We may collect personal information at any of the contact and interaction points we have with our clients, including:',
+        ],
+        list: [
+          'Our website, reservation system, and online forms',
+          'Information sent or shared through our social media channels',
+          'Direct interactions at the restaurant or resort',
+        ],
+        after: [
+          'This information may include:',
+          'Contact details (name, address, email, phone number); reservation or stay details; information related to product or service purchases; nationality; passport or ID number, place and date of issue; history of previous stays; payment and tax information (including RFC or TAX ID); stay preferences; marketing and communication preferences; feedback or opinions; information about travel companions; and medical information you choose to share to enhance your stay.',
+        ],
+      },
+      {
+        title: '2. Use of Personal and Sensitive Information',
+        paragraphs: ['We use your personal data to:'],
+        list: [
+          'Provide the requested services',
+          'Improve our services and guest experience',
+          'Ensure our website and services meet your needs',
+          'Process payments, refunds, and inquiries',
+          'Communicate promotions and service updates',
+        ],
+      },
+      {
+        title: '3. Data Transfers',
+        paragraphs: ['We may transfer your data to:'],
+        list: [
+          'Medical professionals in case of emergency',
+          'Third-party providers operating our IT infrastructure',
+          'Government or regulatory authorities when legally required',
+        ],
+        after: ['If you do not object to these transfers, we will assume your consent.'],
+      },
+      {
+        title: '4. Data Security',
+        paragraphs: [
+          'CASACANTA ZIHUA S.A. de C.V. has implemented physical, technical, and administrative measures to protect your data against unauthorized access, alteration, or loss. Our systems use SSL encryption, access controls, and secure backups.',
+        ],
+      },
+      {
+        title: '5. ARCO Rights, GDPR and CCPA',
+        paragraphs: ['You have the right to:'],
+        list: [
+          'Access your personal data',
+          'Request correction of incorrect or outdated data',
+          'Cancel or request deletion of your data when applicable',
+          'Object to the processing of your data',
+          'Request data portability when applicable',
+          'Revoke your consent at any time',
+        ],
+        after: [
+          'You may exercise these rights by sending your request to:',
+          'We will respond within the periods established by applicable law. If your request is valid, it will be fulfilled according to the applicable legal requirements.',
+        ],
+        contact: true,
+      },
+      {
+        title: '6. Modifications',
+        paragraphs: ['This Privacy Notice may be updated at any time. Changes will be published at:'],
+        siteLink: 'marycielo.mx',
+        after: ['Last updated: July 2026'],
+        strongAfter: true,
+      },
+      {
+        title: '7. Data Controller Identity and Address',
+        paragraphs: ['CASACANTA ZIHUA S.A. de C.V.'],
+        address: {
+          fiscal:
+            'Fiscal address: Montes Urales 720, Floor 1, Office 1-A, Lomas de Chapultepec I Seccion, Miguel Hidalgo, 11000, CDMX, Mexico',
+          restaurant:
+            'Restaurant and resort address: Camino Escenico Playa La Ropa S / N, La Ropa Beach, 40880 Zihuatanejo, Guerrero, Mexico',
+        },
+      },
+    ],
+  },
+  es: {
+    nav: { home: 'Inicio', menu: 'Menú', contact: 'Contacto', book: 'Reservar' },
+    title: 'Aviso de privacidad',
+    intro:
+      'En "Mar y Cielo" (operado por CASACANTA ZIHUA S.A. de C.V.) estamos conscientes de la importancia de mantener la confidencialidad de la información personal y sensible de nuestros huéspedes y clientes. Nos comprometemos a proteger su información y privacidad de acuerdo con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (México), el Reglamento General de Protección de Datos (GDPR) de la Unión Europea y la California Consumer Privacy Act (CCPA) de los Estados Unidos. A continuación, proporcionamos información importante sobre la recopilación y uso de datos personales.',
+    sections: [
+      {
+        title: '1. Recopilación de datos',
+        paragraphs: [
+          'Podemos recopilar información personal en cualquiera de los puntos de contacto e interacción que tenemos con nuestros clientes, incluyendo:',
+        ],
+        list: [
+          'Nuestro sitio web, sistema de reservaciones y formularios en línea',
+          'Información enviada o compartida a través de nuestras redes sociales',
+          'Interacciones directas en el restaurante o resort',
+        ],
+        after: [
+          'Esta información puede incluir:',
+          'Datos de contacto (nombre, dirección, correo electrónico, teléfono); detalles de reservación o estancia; información relacionada con compras de productos o servicios; nacionalidad; número de pasaporte o identificación oficial, lugar y fecha de expedición; historial de estancias previas; información de pago y fiscal (incluyendo RFC o TAX ID); preferencias de estancia; preferencias de comunicación y marketing; comentarios u opiniones; información sobre acompañantes; e información médica que usted decida compartir para mejorar su estancia.',
+        ],
+      },
+      {
+        title: '2. Uso de información personal y sensible',
+        paragraphs: ['Utilizamos sus datos personales para:'],
+        list: [
+          'Proporcionar los servicios solicitados',
+          'Mejorar nuestros servicios y la experiencia de nuestros huéspedes',
+          'Asegurar que nuestro sitio web y servicios respondan a sus necesidades',
+          'Procesar pagos, reembolsos y solicitudes',
+          'Comunicar promociones y actualizaciones de servicio',
+        ],
+      },
+      {
+        title: '3. Transferencia de datos',
+        paragraphs: ['Podemos transferir sus datos a:'],
+        list: [
+          'Profesionales médicos en caso de emergencia',
+          'Proveedores externos que operan nuestra infraestructura tecnológica',
+          'Autoridades gubernamentales o regulatorias cuando la ley lo requiera',
+        ],
+        after: ['Si usted no se opone a estas transferencias, entenderemos que otorga su consentimiento.'],
+      },
+      {
+        title: '4. Seguridad de los datos',
+        paragraphs: [
+          'CASACANTA ZIHUA S.A. de C.V. ha implementado medidas físicas, técnicas y administrativas para proteger sus datos contra acceso no autorizado, alteración o pérdida. Nuestros sistemas utilizan cifrado SSL, controles de acceso y respaldos seguros.',
+        ],
+      },
+      {
+        title: '5. Derechos ARCO, GDPR y CCPA',
+        paragraphs: ['Usted tiene derecho a:'],
+        list: [
+          'Acceder a sus datos personales',
+          'Solicitar la corrección de datos incorrectos o desactualizados',
+          'Cancelar o solicitar la eliminación de sus datos cuando corresponda',
+          'Oponerse al tratamiento de sus datos',
+          'Solicitar la portabilidad de sus datos cuando corresponda',
+          'Revocar su consentimiento en cualquier momento',
+        ],
+        after: [
+          'Puede ejercer estos derechos enviando su solicitud a:',
+          'Responderemos dentro de los plazos establecidos por la ley aplicable. Si su solicitud es válida, se cumplirá conforme a los requisitos legales correspondientes.',
+        ],
+        contact: true,
+      },
+      {
+        title: '6. Modificaciones',
+        paragraphs: ['Este Aviso de Privacidad puede actualizarse en cualquier momento. Los cambios serán publicados en:'],
+        siteLink: 'marycielo.mx',
+        after: ['Última actualización: julio de 2026'],
+        strongAfter: true,
+      },
+      {
+        title: '7. Identidad y domicilio del responsable',
+        paragraphs: ['CASACANTA ZIHUA S.A. de C.V.'],
+        address: {
+          fiscal:
+            'Domicilio fiscal: Montes Urales 720, Piso 1, Oficina 1-A, Lomas de Chapultepec I Sección, Miguel Hidalgo, 11000, CDMX, México',
+          restaurant:
+            'Domicilio del restaurante y resort: Camino Escénico Playa La Ropa S / N, Playa La Ropa, 40880 Zihuatanejo, Guerrero, México',
+        },
+      },
+    ],
+  },
+}[lang];
 ---
 
 <div id="privacy-header" class="privacy-header">
@@ -17,9 +187,9 @@ const privacyNav = {
     <header class="header-inner">
       <a href="/" class="sr-only">Home</a>
       <nav class="header-nav" aria-label="Privacy page navigation">
-        <a href={privacyNav.home}>Home</a>
-        <a href={privacyNav.menu}>Menu</a>
-        <a href={privacyNav.contact}>Contact</a>
+        <a href={privacyNav.home}>{copy.nav.home}</a>
+        <a href={privacyNav.menu}>{copy.nav.menu}</a>
+        <a href={privacyNav.contact}>{copy.nav.contact}</a>
       </nav>
       <nav class="privacy-language-switch" aria-label="Language switcher">
         {lang === 'en' ? (
@@ -35,7 +205,7 @@ const privacyNav = {
         )}
       </nav>
       <a class="book-link" href="https://www.opentable.com/restref/client/?rid=1261543&restref=1261543&lang=en-US&domain=com" target="_blank" rel="noopener">
-        Book Now
+        {copy.nav.book}
       </a>
     </header>
   </div>
@@ -51,107 +221,40 @@ const privacyNav = {
   </div>
 
   <div class="privacy-copy">
-    <h1>Privacy Notice</h1>
+    <h1>{copy.title}</h1>
 
     <div class="legal-content">
-      <p>
-        In "Mar y Cielo" (operated by CASACANTA ZIHUA S.A. de C.V.) we are aware of the importance of
-        maintaining the confidentiality of personal and sensitive information of our guests and clients. We are
-        committed to protecting your information and privacy in accordance with the Federal Law on Protection of
-        Personal Data Held by Private Parties (Mexico), the General Data Protection Regulation (GDPR) of the
-        European Union, and the California Consumer Privacy Act (CCPA) in the United States. Below, we provide
-        important information regarding the collection and use of personal data.
-      </p>
+      <p>{copy.intro}</p>
 
-      <section>
-        <h2>1. Data Collection</h2>
-        <p>We may collect personal information at any of the contact and interaction points we have with our clients, including:</p>
-        <ul>
-          <li>Our website, reservation system, and online forms</li>
-          <li>Information sent or shared through our social media channels</li>
-          <li>Direct interactions at the restaurant or resort</li>
-        </ul>
-        <p>This information may include:</p>
-        <p>
-          Contact details (name, address, email, phone number); reservation or stay details; information related
-          to product or service purchases; nationality; passport or ID number, place and date of issue; history of
-          previous stays; payment and tax information (including RFC or TAX ID); stay preferences; marketing and
-          communication preferences; feedback or opinions; information about travel companions; and medical
-          information you choose to share to enhance your stay.
-        </p>
-      </section>
-
-      <section>
-        <h2>2. Use of Personal and Sensitive Information</h2>
-        <p>We use your personal data to:</p>
-        <ul>
-          <li>Provide the requested services</li>
-          <li>Improve our services and guest experience</li>
-          <li>Ensure our website and services meet your needs</li>
-          <li>Process payments, refunds, and inquiries</li>
-          <li>Communicate promotions and service updates</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>3. Data Transfers</h2>
-        <p>We may transfer your data to:</p>
-        <ul>
-          <li>Medical professionals in case of emergency</li>
-          <li>Third-party providers operating our IT infrastructure</li>
-          <li>Government or regulatory authorities when legally required</li>
-        </ul>
-        <p>If you do not object to these transfers, we will assume your consent.</p>
-      </section>
-
-      <section>
-        <h2>4. Data Security</h2>
-        <p>
-          CASACANTA ZIHUA S.A. de C.V. has implemented physical, technical, and administrative measures to
-          protect your data against unauthorized access, alteration, or loss. Our systems use SSL encryption,
-          access controls, and secure backups.
-        </p>
-      </section>
-
-      <section>
-        <h2>5. ARCO Rights, GDPR and CCPA</h2>
-        <p>You have the right to:</p>
-        <ul>
-          <li>Access your personal data</li>
-          <li>Request correction of incorrect or outdated data</li>
-          <li>Cancel or request deletion of your data when applicable</li>
-          <li>Object to the processing of your data</li>
-          <li>Request data portability when applicable</li>
-          <li>Revoke your consent at any time</li>
-        </ul>
-        <p>You may exercise these rights by sending your request to:</p>
-        <p>
-          <a href={`mailto:${contactEmail}`}>{contactEmail}</a><br />
-          <a href={contactPhoneHref}>{contactPhone}</a>
-        </p>
-        <p>
-          We will respond within the periods established by applicable law. If your request is valid, it will be
-          fulfilled according to the applicable legal requirements.
-        </p>
-      </section>
-
-      <section>
-        <h2>6. Modifications</h2>
-        <p>This Privacy Notice may be updated at any time. Changes will be published at:</p>
-        <p><a href="https://www.marycielo.mx">marycielo.mx</a></p>
-        <p><strong>Last updated: July 2026</strong></p>
-      </section>
-
-      <section>
-        <h2>7. Data Controller Identity and Address</h2>
-        <p><strong>CASACANTA ZIHUA S.A. de C.V.</strong></p>
-        <p>
-          <strong>Fiscal address:</strong> Montes Urales 720, Floor 1, Office 1-A, Lomas de Chapultepec I Seccion,
-          Miguel Hidalgo, 11000, CDMX, Mexico<br />
-          <strong>Restaurant and resort address:</strong> Camino Escenico Playa La Ropa S / N, La Ropa Beach,
-          40880 Zihuatanejo, Guerrero, Mexico
-        </p>
-      </section>
+      {copy.sections.map((section) => (
+        <section>
+          <h2>{section.title}</h2>
+          {section.paragraphs?.map((paragraph, index) => (
+            <p>{section.address && index === 0 ? <strong>{paragraph}</strong> : paragraph}</p>
+          ))}
+          {section.list && (
+            <ul>
+              {section.list.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+          {section.contact && (
+            <p>
+              <a href={`mailto:${contactEmail}`}>{contactEmail}</a><br />
+              <a href={contactPhoneHref}>{contactPhone}</a>
+            </p>
+          )}
+          {section.siteLink && <p><a href="https://www.marycielo.mx">{section.siteLink}</a></p>}
+          {section.address && (
+            <p>
+              <strong>{section.address.fiscal.split(':')[0]}:</strong>{section.address.fiscal.slice(section.address.fiscal.indexOf(':') + 1)}<br />
+              <strong>{section.address.restaurant.split(':')[0]}:</strong>{section.address.restaurant.slice(section.address.restaurant.indexOf(':') + 1)}
+            </p>
+          )}
+          {section.after?.map((paragraph) => (
+            <p>{section.strongAfter ? <strong>{paragraph}</strong> : paragraph}</p>
+          ))}
+        </section>
+      ))}
     </div>
   </div>
 </main>
@@ -160,17 +263,20 @@ const privacyNav = {
   const header = document.getElementById('privacy-header');
   const gradientOverlay = document.getElementById('privacy-gradient');
 
-  window.addEventListener('scroll', () => {
+  function updatePrivacyHeader() {
     const scrolled = window.scrollY;
 
     if (scrolled > 50) {
       gradientOverlay?.classList.add('is-visible');
-      header?.classList.add('has-shadow');
+      header?.classList.add('is-scrolled');
     } else {
       gradientOverlay?.classList.remove('is-visible');
-      header?.classList.remove('has-shadow');
+      header?.classList.remove('is-scrolled');
     }
-  });
+  }
+
+  updatePrivacyHeader();
+  window.addEventListener('scroll', updatePrivacyHeader, { passive: true });
 </script>
 
 <style>
@@ -193,14 +299,21 @@ const privacyNav = {
     transition: box-shadow 0.3s ease;
   }
 
-  .privacy-header.has-shadow .header-surface {
-    box-shadow: 0 12px 26px rgb(0 0 0 / 12%);
+  .privacy-header.is-scrolled .header-surface {
+    color: var(--white);
+    background: rgb(20 49 79 / 94%);
+    box-shadow: 0 12px 26px rgb(0 0 0 / 18%);
   }
 
   .header-surface {
     position: relative;
+    color: #1b252a;
     background: rgb(255 255 255 / 95%);
     backdrop-filter: blur(8px);
+    transition:
+      background 0.28s ease,
+      color 0.28s ease,
+      box-shadow 0.28s ease;
   }
 
   .header-inner {
@@ -216,7 +329,7 @@ const privacyNav = {
     display: flex;
     align-items: center;
     gap: clamp(26px, 4vw, 42px);
-    color: #1b252a;
+    color: inherit;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
@@ -229,7 +342,7 @@ const privacyNav = {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    color: #1b252a;
+    color: inherit;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
@@ -275,6 +388,16 @@ const privacyNav = {
     font-weight: 700;
     text-transform: uppercase;
     background: #fff;
+    transition:
+      border-color 0.28s ease,
+      background 0.28s ease,
+      color 0.28s ease;
+  }
+
+  .privacy-header.is-scrolled .book-link {
+    border-color: rgb(255 255 255 / 52%);
+    color: var(--white);
+    background: transparent;
   }
 
   .header-gradient {
@@ -388,28 +511,42 @@ const privacyNav = {
 
   @media (max-width: 760px) {
     .header-inner {
-      padding: 16px 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px 14px;
+      padding: 14px 18px;
     }
 
     .header-nav {
-      gap: 18px;
-      font-size: 12px;
+      grid-column: 1;
+      grid-row: 1;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 11px;
+      line-height: 1.15;
     }
 
     .privacy-language-switch {
-      top: 58px;
-      left: 22px;
+      position: static;
+      grid-column: 1;
+      grid-row: 2;
+      flex-direction: row;
+      gap: 16px;
       font-size: 11px;
+      line-height: 1;
     }
 
     .book-link {
-      min-height: 42px;
-      padding: 10px 18px;
-      font-size: 12px;
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: center;
+      min-height: 40px;
+      padding: 10px 14px;
+      font-size: 11px;
     }
 
     .privacy-main {
-      padding-top: 108px;
+      padding-top: 118px;
     }
 
     .watermark-frame {
