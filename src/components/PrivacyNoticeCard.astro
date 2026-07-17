@@ -300,15 +300,13 @@ const copy = {
   }
 
   .privacy-header.is-scrolled .header-surface {
-    color: var(--white);
-    background: rgb(20 49 79 / 94%);
     box-shadow: 0 12px 26px rgb(0 0 0 / 18%);
   }
 
   .header-surface {
     position: relative;
-    color: #1b252a;
-    background: rgb(255 255 255 / 95%);
+    color: var(--white);
+    background: rgb(20 49 79 / 94%);
     backdrop-filter: blur(8px);
     transition:
       background 0.28s ease,
@@ -380,14 +378,14 @@ const copy = {
     min-height: 48px;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(27 37 42 / 18%);
+    border: 1px solid rgb(255 255 255 / 52%);
     border-radius: 999px;
     padding: 12px 28px;
-    color: #1b252a;
+    color: var(--white);
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    background: #fff;
+    background: transparent;
     transition:
       border-color 0.28s ease,
       background 0.28s ease,
@@ -396,8 +394,6 @@ const copy = {
 
   .privacy-header.is-scrolled .book-link {
     border-color: rgb(255 255 255 / 52%);
-    color: var(--white);
-    background: transparent;
   }
 
   .header-gradient {
